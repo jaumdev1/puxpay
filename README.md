@@ -1,5 +1,7 @@
 # Puxpay - Plataforma de Pagamentos
 
+![Loading 30%](https://progress-bar.dev/30/)
+
 ## Descrição
 Puxpay é uma solução para gestão de usuários, carteiras digitais, transferências e depósitos. O sistema foi desenvolvido com **Micronaut 4.7.3**, utilizando práticas modernas de desenvolvimento, suporte a transações e integração com bancos de dados PostgreSQL.
 
@@ -34,6 +36,29 @@ Puxpay é uma solução para gestão de usuários, carteiras digitais, transfer�
 - Transferências entre carteiras.
 - Validação de saldo antes de realizar a transferência.
 - Registro das transferências com origem e destino das carteiras.
+
+---
+
+## Arquitetura e Planejamento Futuro
+
+### Arquitetura Vertical Slice com CQRS
+O projeto utiliza a abordagem **Vertical Slice Architecture** com **CQRS** (Command Query Responsibility Segregation), promovendo separação clara entre comandos e consultas.
+
+### Notificações e Filas
+- Notificações serão implementadas utilizando filas do **RabbitMQ**.
+
+### Cache com Redis
+- Será adicionado suporte a cache com **Redis** para otimização de consultas frequentes.
+
+### Modularidade e Bounded Context
+- O sistema é modular, organizado por **features**, permitindo fácil migração para microserviços em caso de necessidade de escalar um **bounded context** específico.
+- O projeto assume acoplamento com o framework para utilizar recursos como **Lazy Load** para acesso ao banco de dados.
+
+### Monitoramento com New Relic
+- Será utilizado o plano **Free** do **New Relic** para monitoramento de desempenho e logs.
+
+### Docker para Infraestrutura
+- Planejado suporte para subir o projeto e o banco de dados com **Docker** para facilitar o desenvolvimento e a integração contínua.
 
 ---
 
