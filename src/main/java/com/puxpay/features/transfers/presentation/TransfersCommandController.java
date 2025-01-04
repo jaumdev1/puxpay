@@ -8,16 +8,53 @@ import com.puxpay.features.transfers.presentation.model.TransferResponse;
 import io.micronaut.http.*;
 import io.micronaut.http.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 
+@Tag(name = "Transfers", description = "Gerenciamento de transferências")
 @Controller("/transfers")
 public class TransfersCommandController {
 
     @Inject
     private CreateTransferCommandHandler createTransferHandler;
 
-    @Operation(summary = "Cria uma nova transferência", description = "Movimenta saldo de payer para payee")
+    @Operation(
+            summary = "Cria uma nova transferência",
+            description = "Movimenta saldo de payer para payee",
+            requestBody = @RequestBody(
+                    description = "Detalhes da solicitação de transferência",
+                    required = true,
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = TransferRequest.class)
+                    )
+            ),
+            responses = {
+                    @ApiResponse(
+                            responseCode = "201",
+                            description = "Transferência criada com sucesso",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = TransferResponse.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "400",
+                            description = "Dados inválidos na solicitação",
+                            content = @Content(mediaType = "application/json")
+                    ),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = "Erro interno do servidor",
+                            content = @Content(mediaType = "application/json")
+                    )
+            }
+    )
     @Post
     public HttpResponse<TransferResponse> create(@Valid @Body TransferRequest request) {
         var cmd = new CreateTransferCommand(
@@ -38,3 +75,4 @@ public class TransfersCommandController {
         return HttpResponse.created(response);
     }
 }
+

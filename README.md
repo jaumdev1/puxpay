@@ -9,6 +9,10 @@ Puxpay é uma solução para gestão de usuários, carteiras digitais, transfer�
 ![Diagrama do Projeto](diagram.png)
 
 ---
+## API
+![swagger](swagger.png)
+
+---
 
 ## Features
 
