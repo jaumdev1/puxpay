@@ -1,6 +1,7 @@
 # Puxpay - Plataforma de Pagamentos
 
-![Loading 30%](https://progress-bar.dev/30/)
+## Progresso
+![Loading 30%](https://img.shields.io/badge/Progress-30%25-blue)
 
 ## Descrição
 Puxpay é uma solução para gestão de usuários, carteiras digitais, transferências e depósitos. O sistema foi desenvolvido com **Micronaut 4.7.3**, utilizando práticas modernas de desenvolvimento, suporte a transações e integração com bancos de dados PostgreSQL.
