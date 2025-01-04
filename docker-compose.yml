@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  puxpay-db:
+    image: postgres:15
+    container_name: puxpay_postgres
+    environment:
+      POSTGRES_DB: puxpaydb
+      POSTGRES_USER: puxpay_user
+      POSTGRES_PASSWORD: puxpay_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - puxpay_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U puxpay_user -d puxpaydb -h localhost || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  puxpay_data:

@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.puxpay
+testFramework: junit
+sourceLanguage: java
+buildTool: maven
+features: [app-name, data, data-jpa, flyway, http-client, java, java-application, jdbc-hikari, junit, logback, maven, maven-enforcer-plugin, micronaut-aot, micronaut-http-validation, mockito, netty-server, openapi, postgres, properties, readme, serialization-jackson, shade, static-resources, swagger-ui, test-resources, validation]
